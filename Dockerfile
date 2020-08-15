@@ -59,14 +59,14 @@ RUN apt update && apt upgrade -y && \
 # Pypi package Repo upgrade
 RUN pip3 install --upgrade pip setuptools
 
-# Copy Python Requirements to /root/LyndaRobot
-RUN git clone https://github.com/pokurt/LyndaRobot.git /root/LyndaRobot
-WORKDIR /root/LyndaRobot
+# Copy Python Requirements to /root/TiffanyRobot
+RUN git clone https://github.com/pokurt/TiffanyRobot.git /root/TiffanyRobot
+WORKDIR /root/TiffanyRobot
 
-ENV PATH="/home/lynda/bin:$PATH"
+ENV PATH="/home/tiffany/bin:$PATH"
 
 # Install requirements
 RUN sudo pip3 install -U -r requirements.txt
 
 # Starting Worker
-CMD ["python3","-m","lynda"]
+CMD ["python3","-m","tiffany"]
