@@ -7,7 +7,7 @@ from tiffany.modules.disable import DisableAbleCommandHandler
 
 @run_async
 def weather(bot, update, args):
-    if len(args) == 0:
+    if len(args) == 0: 
         update.effective_message.reply_text(
             "Write a location to check the weather.")
         return
@@ -21,19 +21,16 @@ def weather(bot, update, args):
 
     try:
         owm = pyowm.OWM(API_WEATHER)
-        observation = owm.weather_at_place(location)
-        getloc = observation.get_location()
-        thelocation = getloc.get_name()
-        if thelocation is None:
-            thelocation = "Unknown"
-        theweather = observation.get_weather()
-        temperature = theweather.get_temperature(unit='celsius').get('temp')
-        if temperature is None:
-            temperature = "Unknown"
+        mgr = owm.weather_manager()
+        observation = mgr.weather_at_place(location)
+        wtr = observation.weather
+        thetemp = wtr.temperature(unit='fahrenheit').get('temp')
+        if thetemp is None:
+            thetemp = "Unknown"
 
         # Weather symbols
         status = ""
-        status_now = theweather.get_weather_code()
+        status_now = wtr.weather_code()
         if status_now < 232:  # Rain storm
             status += "⛈️ "
         elif status_now < 321:  # Drizzle
@@ -52,11 +49,11 @@ def weather(bot, update, args):
             status += "⛅️ "
         elif status_now < 804:  # Cloudy
             status += "☁️ "
-        status += theweather._detailed_status
+        status += wtr.detailed_status
 
         update.message.reply_text(
-            "Today in {} is being {}, around {}°C.\n".format(
-                thelocation, status, temperature))
+            "Today in {} is being {}, around {}°F.\n".format(
+                location, status, thetemp))
 
     except pyowm.exceptions.api_response_error:
         update.effective_message.reply_text("Sorry, location not found.")
