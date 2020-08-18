@@ -504,6 +504,7 @@ TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 ABUSE_HANDLER = DisableAbleCommandHandler("abuse", abuse)
 INSULT_HANDLER = DisableAbleCommandHandler("insult", insult)
 COPYPASTA_HANDLER = DisableAbleCommandHandler("copypasta", copypasta)
+FORBESIFY_HANDLER = DisableAbleCommandHandler("forbesify", forbesify)
 
 dispatcher.add_handler(POLICE_HANDLER)
 dispatcher.add_handler(MOON_HANDLER)
@@ -530,6 +531,7 @@ dispatcher.add_handler(DEEPFRY_HANDLER)
 dispatcher.add_handler(CHANGEMYMIND_HANDLER)
 dispatcher.add_handler(TRUMPTWEET_HANDLER)
 dispatcher.add_handler(EIGHTBALL_HANDLER)
+dispatcher.add_handler(FORBESIFY_HANDLER)
 
 __mod_name__ = "Fun"
 __command_list__ = [
@@ -558,7 +560,8 @@ __command_list__ = [
     "shout",
     "changemymind",
     "trumptweet",
-    "eightball"]
+    "eightball",
+    "forbesify"]
 __handlers__ = [
     RUNS_HANDLER,
     SLAP_HANDLER,
@@ -584,4 +587,5 @@ __handlers__ = [
     DEEPFRY_HANDLER,
     CHANGEMYMIND_HANDLER,
     TRUMPTWEET_HANDLER,
-    EIGHTBALL_HANDLER]
+    EIGHTBALL_HANDLER,
+    FORBESIFY_HANDLER]
